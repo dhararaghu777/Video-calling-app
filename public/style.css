@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* position: absolute; */
 }
 
 .main{
@@ -10,13 +11,18 @@ body {
 }
 
 .main__left{
-    flex: 0.8;
+    flex: 1 1 80%;
     display: flex;
     flex-direction: column;
 }
 
 .main__right{
-    flex: 0.2;
+    /* flex: 1 1 20%; */
+    display: flex;
+}
+
+.main__right__chat1{
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,6 +31,10 @@ body {
     background: #242324;
     color: #fff;
     border: 1px solid #3d3d42;
+}
+
+.main__right__chat2{
+    display: none;
 }
 
 .main__vidoes{
@@ -87,7 +97,7 @@ body {
     overflow-y: auto;
 }
 
-.main__chat__window .messages{
+.main__chat__window .messages-1, .messages-2{
     list-style-type: none;
 }
 
@@ -110,14 +120,120 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
 }
 
 video{
-    width: 400px;
-    height: 300px;
+    min-width: 13rem;
+    min-height: 10rem;
+    max-width: 25rem;
+    max-height: 18rem;
     object-fit: cover;
 }
 
 .unmute{
     color: red;
+}
+
+.chat__open__close{
+    display: none;
+}
+
+
+@media (max-width:740px){
+    
+    .main__right__chat1{
+        display: none;
+    }
+
+    .main__right__chat2{
+        display: none;
+        position: fixed;
+        inset: 0;
+        color: white;
+        background-color: rgba(0, 0, 0,0.2);
+        transition: transform 250ms ease-in-out;
+    }
+
+    .open{
+        display: flex;
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    .close{
+        display: none;
+        transform: translate(100%);
+        opacity: 0;
+    }
+
+    .chat2__left{
+        flex: 0 0 50%;
+    }
+
+    .chat2__right{
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        background: #242324;
+        color: #fff;
+        border: 1px solid #3d3d42;
+    }
+
+
+
+    .chat__open__close{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .security, .participants{
+        display: none;
+    }
+
+    .main__controls__button{
+        min-width: 50px;
+    }
+
+    .main__controls__button i{
+        font-size: 1.3rem;
+    }
+
+    .main__controls__button span{
+        font-size: 1.1rem;
+    }
+
+    video{
+        min-width: 10rem;
+        min-height: 8rem;
+        max-width: 20rem;
+        max-height: 18rem
+    }
+}
+
+
+
+@media (max-width: 540px){
+   .main__controls__button{
+        min-width: 35px;
+    }
+
+    .main__controls__button i{
+        font-size: 1.1rem;
+    }
+
+    .main__controls__button span{
+        font-size: 0.9rem;
+    }
+
+    video{
+            min-width: 5rem;
+            min-height: 4rem;
+            max-width: 20rem;
+            max-height: 18rem
+    }
+    
+
 }

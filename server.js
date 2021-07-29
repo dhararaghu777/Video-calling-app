@@ -1,7 +1,7 @@
 const express = require('express');
 const {v4: uuidv4} = require('uuid');
 const app= express();
-const server= require('http').Server(app);
+const server= require('http').createServer(app);
 
 // socket.io setup
 const io= require('socket.io')(server);
@@ -26,7 +26,7 @@ app.get('/:room', (req, res)=>{
     res.render('room', {roomId : req.params.room });
 })
 
-io.on('connect', socket=>{
+io.on('connection', socket=>{
     
     socket.on('join-room', (roomId, userId)=>{
         socket.join(roomId);
@@ -34,9 +34,13 @@ io.on('connect', socket=>{
 
         socket.on('message', (message)=>{
             io.to(roomId).emit('createMessage', message);
+        });
+
+        socket.on('disconnect', ()=>{
+        socket.broadcast.to(roomId).emit('user-disconnected', userId)
         })
         
     })
 })
 
-server.listen(process.env.PORT || 3030);
+server.listen(process.env.PORT || 3000);
