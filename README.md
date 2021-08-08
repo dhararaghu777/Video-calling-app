@@ -1,3 +1,3 @@
 # Video-calling-app
 
-Website URL: https://zoom-clone-raghu-dara.herokuapp.com
+Website URL: https://raghu-dara-app.herokuapp.com
